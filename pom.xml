@@ -6,13 +6,20 @@
     <groupId>org.springframework.samples</groupId>
     <artifactId>spring-petclinic</artifactId>
     <version>2.2.0.BUILD-SNAPSHOT</version>
-
+    
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.4.RELEASE</version>
     </parent>
     <name>petclinic</name>
+	<developers>
+    	<developer>
+    		<id>pgmarc</id>
+    		<name>Pedro González Marcos</name>
+    		<email>pedgonmar2@alum.us.es</email>
+    	</developer>
+    </developers>
 
     <properties>
 
