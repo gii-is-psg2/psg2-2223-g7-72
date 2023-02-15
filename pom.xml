@@ -40,15 +40,13 @@
             <name>Rocío López Moyano</name>
             <email>rociolopez08@gmail.com</email>
         </developer>
-    </developers>
-
-    <developers>
         <developer>
         <id>davzarort</id>
         <name>David Zarandieta Ortiz</name>
         <email>davidzarandieta@gmail.com</email>            
         </developer>
     </developers>
+
 
     <properties>
 
