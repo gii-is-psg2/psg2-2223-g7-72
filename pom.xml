@@ -15,13 +15,33 @@
     </parent>
     
     <developers>
-    <developer>
-      <id>roclopmoy</id>
-      <name>Rocío López Moyano</name>
-      <email>rociolopez08@gmail.com</email>
-    </developer>
-  </developers>
-    
+        <developer>
+    		<id>pgmarc</id>
+    		<name>Pedro González Marcos</name>
+    		<email>pedgonmar2@alum.us.es</email>
+    	</developer>
+        <developer>
+    	    <id>manvazmar3</id>
+    	    <name>Manuel Vazquez Martin</name>
+    	    <email>mvazquezmartin@educarex.es</email>
+        </developer>
+        <developer>
+		    <id>josmorgue3</id>
+			<name>José Manuel Moreno Guerrero</name>
+			<email>josmorgue3@alum.us.es</email>
+		</developer>
+      <developer>
+          <id>vicruidel1</id>
+          <name>Victoria del Carmen Ruiz Delgado</name>
+          <email>vicruidel1@alum.us.es</email>
+      </developer>
+        <developer>
+            <id>roclopmoy</id>
+            <name>Rocío López Moyano</name>
+            <email>rociolopez08@gmail.com</email>
+        </developer>
+    </developers>
+
     <properties>
 
         <!-- Generic properties -->
@@ -39,7 +59,7 @@
         <spring-format.version>0.0.19</spring-format.version>
 
     </properties>
-
+	
     <dependencies>
         <!-- Spring and Spring Boot dependencies -->
         <dependency>
