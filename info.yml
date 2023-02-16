@@ -1,32 +1,32 @@
 project:
-  name: 'PSG2-2223-GX-XY Petclinic'
-  owner: 'LX'
-  teamId: 'XY'
+  name: 'PSG2-2223-G7-72 Petclinic'
+  owner: 'L7'
+  teamId: 'G7-72'
   identities:
     github:
-      url: 'https://github.com/gii-is-psg2/spring-petclinic'
+      url: 'https://github.com/gii-is-psg2/psg2-2223-g7-72'
   members:
     member1:
-      name: 'José María'
-      surname: 'García' 
-      githubUsername: 'josemgarcia'
+      name: 'PEDRO'
+      surname: 'GONZÁLEZ' 
+      githubUsername: 'pgmarc'
     member2:
-      name: 'Jose Antonio'
-      surname: 'Parejo'
-      githubUsername: 'japarejo'
+      name: 'ROCIO'
+      surname: 'LOPEZ'
+      githubUsername: 'RukisRo'
     member3:
-      name: 'Antonio'
-      surname: 'Ruiz'
-      githubUsername: 'antonioruizcortes'
+      name: 'JOSE MANUEL'
+      surname: 'MORENO'
+      githubUsername: 'josmorgue3'
     member4:
-      name: 'Carlos'
-      surname: 'Müller'
-      githubUsername: 'cmullercejas'
+      name: 'VICTORIA DEL CARMEN'
+      surname: 'RUIZ'
+      githubUsername: 'VictoriaCRD'
     member5:
-      name: 'Lola'
-      surname: 'De Acuña'
-      githubUsername: 'loladacuna'
+      name: 'MANUEL'
+      surname: 'VAZQUEZ'
+      githubUsername: 'manvazmar3'
     member6:
-      name: 'Alfonso'
-      surname: 'Márquez'
-      githubUsername: 'alfedu'
+      name: 'DAVID'
+      surname: 'ZARANDIETA'
+      githubUsername: 'davidzarandieta'
