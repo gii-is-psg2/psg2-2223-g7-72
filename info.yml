@@ -8,25 +8,25 @@ project:
   members:
     member1:
       name: 'PEDRO'
-      surname: 'GONZÁLEZ' 
+      surname: 'GONZALEZ MARCOS' 
       githubUsername: 'pgmarc'
     member2:
       name: 'ROCIO'
-      surname: 'LOPEZ'
+      surname: 'LOPEZ MOYANO'
       githubUsername: 'RukisRo'
     member3:
       name: 'JOSE MANUEL'
-      surname: 'MORENO'
+      surname: 'MORENO GUERRERO'
       githubUsername: 'josmorgue3'
     member4:
       name: 'VICTORIA DEL CARMEN'
-      surname: 'RUIZ'
+      surname: 'RUIZ DELGADO'
       githubUsername: 'VictoriaCRD'
     member5:
       name: 'MANUEL'
-      surname: 'VAZQUEZ'
+      surname: 'VAZQUEZ MARTIN'
       githubUsername: 'manvazmar3'
     member6:
       name: 'DAVID'
-      surname: 'ZARANDIETA'
+      surname: 'ZARANDIETA ORTIZ'
       githubUsername: 'davidzarandieta'
