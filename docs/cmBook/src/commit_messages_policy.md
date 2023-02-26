@@ -4,13 +4,14 @@ Para la correcta realización de los commits por parte del equipo de desarrollo 
 
 Las reglas a cumplir son las siguientes:
 
-- Separar el asunto del cuerpo del mensaje por una línea en blanco.
+- En caso de que se incluya cuerpo o pie de página, ambos obligatoriamente se escribirá con un salto de línea tras lo que lo preceda.
 - El asunto no podrá superar los 50 caracteres.
-- El primer carácter despues del tipo del commit deberá ir con mayúsculas.
-- No concluir el asunto con un punto final.
-- Usar el imperativo en el asunto.
 - El cuerpo deberá ser de máximo 72 caracteres.
-- En el cuerpo se explicará el qué, el por qué de las modificaciones realizadas en ese commit.
+- No concluir la descripción con un punto final pero sí el cuerpo.
+- Usar el imperativo en la descripción.
+- Se escribirá la descripción completa en minúsculas y el cuerpo empezará por mayúscula.
+- En el cuerpo se explicará el qué y el por qué de las modificaciones realizadas en ese commit.
+- Será obligatorio indicar el tipo de commit.
 
 Adicionalmente se indica la estructura que deberán tener estos mensajes:
 
@@ -24,22 +25,35 @@ Se utilizarán estos tipos en los commits:
 
 - `fix`: se indica como tipo cuando se corrigen bugs en el código fuente.
 - `feat`: se especifica al añadir una nueva funcionalidad.
-Otros tipos son también: `build`, `chore`, `docs`, `refactor`, `test`…
+Otros tipos son también: `build`, `chore`, `ci`, `docs`, `style`, `refactor`, `perf`, `test`.
 
-Se añadirá `!` después del tipo si el commit contine algún cambio importante. En este último caso se podrá indicar en el pie de página escribiendo “BREAKING CHANGE:” y seguido de una descripción. También se pueden incluir mensajes como “Fixes #issue”, “Resolves #issue”.
+Se añadirá `!` después del tipo si el commit contine algún cambio de ultima hora o importante. En este último caso se podrá indicar en el pie de página escribiendo *BREAKING CHANGE:* y seguido de una descripción. También se pueden incluir mensajes como `Fixes #issue`, `Refs #issue`.
 
-Ejemplos:
+Algunos ejemplos de mensajes de commit serían:
 
-```bash
-feat(pethotel): Add booking system to pets
-```
+- Mensaje de commit con descripción y breaking change en su pie de página
 
 ```text
-feat(api)!: Change route get pet listing
+feat: añadido compra de productos para mascotas
 
-BREAKING CHANGE: The api no loger works with /get/petlisting changed to /pets
+BREAKING CHANGE: la clave ‘compra’ del archivo config ahora asigna las
+compras al cliente correspondiente.
 ```
 
+- Mensaje de commit con alcance y !
+
 ```text
-test(pethotel): Add a suite of test to pethotel
+feat(api)!: envío de correo al cliente que pida una visita
+```
+
+- Mensaje de commit con cuerpo y pie de página
+
+```text
+fix: solucionado el solapamiento de solicitudes
+
+Se introducirá una ID de solicitud y una referencia de la última
+solicitud para solucionar los tiempos de espera en las solicitudes.
+
+Fixes: #45
+Refs: #123
 ```
