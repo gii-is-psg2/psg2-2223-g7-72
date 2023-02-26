@@ -7,7 +7,7 @@ Las llaves `{}` se utilizarán en las declaraciones `if`, `else`, `for`, incluso
 Para las llaves hay que tener en cuenta lo siguiente:
 
 - Ningún salto de línea antes de la llave de apertura.
-- Salto de línea después de la llave de apertura
+- Salto de línea después de la llave de apertura.
 - Salto de línea antes de la llave de cierre.
 - Salto de línea después de la llave de cierre solo si esa llave termina una declaración o el cuerpo de un método, constructor o clase con nombre.
 
@@ -56,7 +56,7 @@ Las anotaciones aparecerán situadas en la cabecera, independientemente si se tr
 
 ## Comentarios
 
-Los comentarios se tabularán al mismo nivel que el código circundante.
+Los comentarios se posicionarán al mismo nivel que el código circundante utilizando el tabulador.
 
 ```java
     //Esto es un comentario
