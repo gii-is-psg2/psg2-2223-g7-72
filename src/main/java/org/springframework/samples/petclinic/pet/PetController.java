@@ -147,4 +147,11 @@ public class PetController {
 		}
 	}
 
+	@PostMapping(value = "/pets/{petId}/delete")
+	public String processDeleteForm(@PathVariable("petId") int petId) {
+		Pet pet = this.petService.findPetById(petId);
+		this.petService.deletePet(pet);
+		return "redirect:/owners/{ownerId}";
+	}
+
 }

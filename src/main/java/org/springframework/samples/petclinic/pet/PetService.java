@@ -77,4 +77,9 @@ public class PetService {
 		return visitRepository.findByPetId(petId);
 	}
 
+	@Transactional
+	public void deletePet(Pet pet) throws DataAccessException {
+		petRepository.delete(pet);
+	}
+
 }

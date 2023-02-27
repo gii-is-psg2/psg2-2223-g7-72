@@ -49,4 +49,9 @@ public class VetService {
 		vetRepository.save(vet);
 	}
 
+	@Transactional
+	public void deleteVet(Vet vet) throws DataAccessException {
+		vetRepository.delete(vet);
+	}
+
 }

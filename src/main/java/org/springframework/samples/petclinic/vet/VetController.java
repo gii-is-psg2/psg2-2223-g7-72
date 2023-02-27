@@ -97,4 +97,12 @@ public class VetController {
 		}
 	}
 
+	@PostMapping("vets/{vetId}/delete")
+	public String deleteVet(@PathVariable("vetId") int vetId) {
+		Vet vet = this.vets.findById(vetId);
+		this.vets.delete(vet);
+		return "redirect:/vets";
+	}
+
+
 }
