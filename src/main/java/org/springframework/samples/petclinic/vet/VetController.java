@@ -32,6 +32,7 @@ import java.util.Map;
 public class VetController {
 
 	private final VetService vetService;
+	String VIEWS_VET_CREATE_OR_UPDATE_FORM = "vets/createOrUpdateVetForm";
 
 	@Autowired
 	public VetController(VetService clinicService) {
