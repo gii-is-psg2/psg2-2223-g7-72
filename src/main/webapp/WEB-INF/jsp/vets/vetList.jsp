@@ -10,7 +10,7 @@
         <thead>
         <tr>
             <th><fmt:message key="vets"/></th>
-            <th><fmt:message key="specialties.vet"/></th>
+            <th><fmt:message key="specialtiesVet"/></th>
         </tr>
         </thead>
         <tbody>
@@ -34,7 +34,7 @@
         <tr>
             <td>
                 <a href="<spring:url value="/vets.xml" htmlEscape="true" />"> 
-                <fmt:message key="ViewasXML"/></a>
+                <fmt:message key="viewasXML"/></a>
             </td>            
         </tr>
     </table>

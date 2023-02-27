@@ -14,7 +14,7 @@
             <th style="width: 200px;"><fmt:message key="address"/></th>
             <th><fmt:message key="city"/></th>
             <th style="width: 120px"><fmt:message key="telephone"/></th>
-            <th><fmt:message key="Pets"/></th>
+            <th><fmt:message key="pets"/></th>
         </tr>
         </thead>
         <tbody>

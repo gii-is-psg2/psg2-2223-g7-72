@@ -15,7 +15,7 @@
     </jsp:attribute>
     <jsp:body>
         <h2>
-            <c:if test="${pet['new']}">new </c:if> Pet
+            <c:if test="${pet['new']}"><fmt:message key="newPet"/> </c:if> 
         </h2>
         <form:form modelAttribute="pet"
                    class="form-horizontal">

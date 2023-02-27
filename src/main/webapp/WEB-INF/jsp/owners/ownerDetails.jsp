@@ -7,7 +7,7 @@
 
 <petclinic:layout pageName="owners">
 
-    <h2><fmt:message key="OwnerInformation"/></h2>
+    <h2><fmt:message key="ownerInformation"/></h2>
 
 
     <table class="table table-striped">
@@ -32,12 +32,12 @@
     <spring:url value="{ownerId}/edit" var="editUrl">
         <spring:param name="ownerId" value="${owner.id}"/>
     </spring:url>
-    <a href="${fn:escapeXml(editUrl)}" class="btn btn-default"><fmt:message key="EditOwner"/></a>
+    <a href="${fn:escapeXml(editUrl)}" class="btn btn-default"><fmt:message key="editOwner"/></a>
 
     <spring:url value="{ownerId}/pets/new" var="addUrl">
         <spring:param name="ownerId" value="${owner.id}"/>
     </spring:url>
-    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default"><fmt:message key="AddNewPet"/></a>
+    <a href="${fn:escapeXml(addUrl)}" class="btn btn-default"><fmt:message key="addNewPet"/></a>
 
     <br/>
     <br/>
@@ -52,7 +52,7 @@
                     <dl class="dl-horizontal">
                         <dt><fmt:message key="name"/></dt>
                         <dd><c:out value="${pet.name}"/></dd>
-                        <dt><fmt:message key="BirthDate"/></dt>
+                        <dt><fmt:message key="birthDate"/></dt>
                         <dd><petclinic:localDate date="${pet.birthDate}" pattern="yyyy-MM-dd"/></dd>
                         <dt><fmt:message key="type"/></dt>
                         <dd><c:out value="${pet.type.name}"/></dd>

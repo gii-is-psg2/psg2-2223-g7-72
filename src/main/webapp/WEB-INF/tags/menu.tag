@@ -26,13 +26,13 @@
 				<petclinic:menuItem active="${name eq 'home'}" url="/"
 					title="home page">
 					<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-					<span><fmt:message key="Home"/></span>
+					<span><fmt:message key="home"/></span>
 				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'owners'}" url="/owners/find"
 					title="find owners">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					<span><fmt:message key="FindOwners"/></span>
+					<span><fmt:message key="findOwners"/></span>
 				</petclinic:menuItem>
 
 				<petclinic:menuItem active="${name eq 'vets'}" url="/vets"
@@ -54,8 +54,8 @@
 
 			<ul class="nav navbar-nav navbar-right">
 				<sec:authorize access="!isAuthenticated()">
-					<li><a href="<c:url value="/login" />"><fmt:message key="Login"/></a></li>
-					<li><a href="<c:url value="/users/new" />"><fmt:message key="Register"/></a></li>
+					<li><a href="<c:url value="/login" />"><fmt:message key="login"/></a></li>
+					<li><a href="<c:url value="/users/new" />"><fmt:message key="register"/></a></li>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -78,7 +78,7 @@
 											</p>
 											<p class="text-left">
 												<a href="<c:url value="/logout" />"
-													class="btn btn-primary btn-block btn-sm"><fmt:message key="Logout"/></a>
+													class="btn btn-primary btn-block btn-sm"><fmt:message key="logout"/></a>
 											</p>
 										</div>
 									</div>
