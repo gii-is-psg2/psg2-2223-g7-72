@@ -59,4 +59,41 @@ public class VetController {
 		return vets;
 	}
 
+	@GetMapping("vets/new")
+	public String initCreationForm(Map<String, Object> model) {
+		Vet vet = new Vet();
+		model.put("vet", vet);
+		return VIEWS_VET_CREATE_OR_UPDATE_FORM;
+	}
+
+	@GetMapping("vets/{vetId}/edit")
+	public String initUpdateVetForm(@PathVariable("vetId") int vetId, Model model) {
+		Vet vet = this.vets.findById(vetId);
+		model.addAttribute(vet);
+		return VIEWS_VET_CREATE_OR_UPDATE_FORM;
+	}
+
+	@PostMapping("vets/new")
+	public String processCreationForm(@Valid Vet vet, BindingResult result) {
+		if (result.hasErrors()) {
+			return VIEWS_VET_CREATE_OR_UPDATE_FORM;
+		}
+		else {
+			this.vets.save(vet);
+			return "redirect:/vets/" + vet.getId();
+		}
+	}
+
+	@PostMapping("vets/{vetId}/edit")
+	public String processUpdateVetForm(@Valid Vet vet, BindingResult result, @PathVariable("vetId") int vetId) {
+		if (result.hasErrors()) {
+			return VIEWS_VET_CREATE_OR_UPDATE_FORM;
+		}
+		else {
+			vet.setId(vetId);
+			this.vets.save(vet);
+			return "redirect:/vets/{vetId}";
+		}
+	}
+
 }

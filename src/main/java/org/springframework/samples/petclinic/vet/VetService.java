@@ -44,4 +44,9 @@ public class VetService {
 		return vetRepository.findAll();
 	}	
 
+	@Transactional
+	public void saveVet(Vet vet) throws DataAccessException {
+		vetRepository.save(vet);
+	}
+
 }
