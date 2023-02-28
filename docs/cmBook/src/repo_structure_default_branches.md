@@ -19,6 +19,8 @@ En el proyecto se usarán dos ramas principales `main` y `develop`:
 
 Nomenclatura: `main`
 
+![Main branch](images/main.png)
+
 - `develop`: Servirá como integración para las funciones. Se deberá crear al inicio del proyecto una rama `develop` (a partir de la rama `main`) que contendrá todo el historial completo del proyecto.
 
 Nomenclatura: `develop`

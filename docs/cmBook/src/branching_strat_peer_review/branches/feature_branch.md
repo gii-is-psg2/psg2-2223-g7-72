@@ -2,6 +2,8 @@
 
 Para implementar nuevas funcionalidades se debe abrir una nueva rama `feature` desde la última versión de `develop`. Cuando la nueva función esté terminada, se fusionará  en `develop` pero no deben interactuar directamente con `main`. Desde la rama `develop` se hará merge[^merge] a la rama `feature`, será necesario realizar un `PULL-REQUEST` antes del `merge`[^merge]. Además se usará la opción `--no-ff` del `merge`[^merge] para realizar un merge commit separado al fusionar los cambios introducidos en `feature` y `develop`.
 
+![Feature and develop branch](../../images/feat-develop.png)
+
 Nomenclatura: `feature/{numeroIssue}-{nuevaFuncionalidad}`
 Ejemplos:
 
