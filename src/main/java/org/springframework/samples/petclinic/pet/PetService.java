@@ -78,8 +78,8 @@ public class PetService {
 	}
 
 	@Transactional
-	public void deletePet(Pet pet) throws DataAccessException {
-		petRepository.delete(pet);
+	public void deletePetById(Integer petId){
+		petRepository.deleteById(petId);
 	}
 
 }

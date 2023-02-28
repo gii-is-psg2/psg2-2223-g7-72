@@ -69,5 +69,6 @@ public class OwnerService {
 	@Transactional
 	public void deleteOwner(Owner owner) throws DataAccessException {
 		ownerRepository.delete(owner);
+	}
 
 }

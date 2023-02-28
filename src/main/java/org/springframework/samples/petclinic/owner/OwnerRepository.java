@@ -60,5 +60,5 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 	public Owner findById(@Param("id") int id);
 
 	void delete(Owner owner) throws DataAccessException;
-
+	
 }
