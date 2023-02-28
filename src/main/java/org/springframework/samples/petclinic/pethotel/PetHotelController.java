@@ -95,14 +95,16 @@ public class PetHotelController {
 		return PET_HOTEL_FORM;
 	}
 	
+	
 	@PostMapping(value = "/{id}/edit")
-	public String processUpdateForm(@Valid PetHotel petHotel, BindingResult br, Owner owner, Pet pet, @PathVariable("id") int id, ModelMap model) {
+	public String processUpdateForm(@ModelAttribute("petHotel") @Valid PetHotel petHotel, BindingResult br, Owner owner, Pet pet, @PathVariable("id") int id, ModelMap model) {
 		if(br.hasErrors()) {
 			model.put("petHotel", petHotel);
 			return PET_HOTEL_FORM;
 		} else {
 			PetHotel petHotelToUpdate = service.getPetHotelById(id);
-			BeanUtils.copyProperties(petHotel, petHotelToUpdate,"id");
+			BeanUtils.copyProperties(petHotel, petHotelToUpdate, "id", "owner", "pet");
+			service.save(petHotelToUpdate);
 			return "redirect:/owners/{ownerId}";
 		}
 	}
