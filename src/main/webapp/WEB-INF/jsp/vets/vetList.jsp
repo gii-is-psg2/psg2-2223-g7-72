@@ -5,15 +5,17 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<petclinic:layout pageName="vets" >
-   <h2><fmt:message key="vets"/></h2>
+
+<petclinic:layout pageName="vets">
+    <h2><fmt:message key="vets"/></h2>
+
     <table id="vetsTable" class="table table-striped">
         <thead>
         <tr>
 
-            <th>Name</th>
-            <th>Specialties</th>
-            <th>Options</th>
+            <th><fmt:message key="vets"/></th>
+            <th><fmt:message key="specialtiesVet"/></th>
+            <th><fmt:message key="options"/></th>
         </tr>
         </thead>
         <tbody>
@@ -23,7 +25,7 @@
                     <c:out value="${vet.firstName} ${vet.lastName}"/>
                 </td>
                 <td>
-                    <c:forEach var="specialties.vet" items="${vet.specialties}">
+                    <c:forEach var="specialty" items="${vet.specialties}">
                         <c:out value="${specialty.name} "/>
                     </c:forEach>
                     <c:if test="${vet.nrOfSpecialties == 0}"><fmt:message key="none"/></c:if>
@@ -42,9 +44,13 @@
     <table class="table-buttons">
         <tr>
             <td>
-                <a href="<spring:url value="/vets.xml" htmlEscape="true" />"> 
-                <fmt:message key="viewasXML"/></a>
+                <a href="<spring:url value="/vets.xml" htmlEscape="true" />"><fmt:message key="viewasXML"/></a>
             </td>            
         </tr>
     </table>
+
+    <sec:authorize access="hasAuthority('admin')">
+		<a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'>Add vet</a>
+	</sec:authorize>
+
 </petclinic:layout>
