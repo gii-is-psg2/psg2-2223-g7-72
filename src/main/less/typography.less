@@ -21,6 +21,27 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'insaniburger';
+  src: url('../fonts/Insanibu.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'tomcat';
+  src: url('../fonts/Tomcat.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'oranges';
+  src: url('../fonts/Oranges.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body, h1, h2, h3, p, input {
   margin: 0;
   font-weight: 400;
@@ -29,24 +50,27 @@ body, h1, h2, h3, p, input {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 40px;
   line-height: 30px;
-  font-family: "montserratregular", sans-serif;
+  font-family: "tomcat";
+  text-align: center;
 }
 
 h2 {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
   line-height: 24px;
   margin-bottom: 10px;
-  font-family: "montserratregular", sans-serif;
+  font-family: "oranges";
 }
 
 h3 {
-  font-size: 16px;
+  font-size: 20px;
   line-height: 24px;
   margin-bottom: 10px;
   font-weight: 700;
+  font-family: "insaniburger";
+  text-align: center;
 }
 
 p {
@@ -57,4 +81,8 @@ p {
 strong {
   font-weight: 700;
   font-family: "montserratregular", sans-serif;
+}
+
+th {
+  font-size: 16px;
 }

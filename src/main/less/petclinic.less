@@ -21,27 +21,33 @@
 @spring-brown: #34302d;
 @spring-grey: #909496;
 @spring-light-grey: #f1f1f1;
+@spring-light-brown: rgb(169, 145, 122);
+@spring-dark-brown: rgb(106, 84, 77);
 
 @body-bg: @spring-light-grey;
 @text-color: @spring-brown;
-@link-color: @spring-dark-green;
-@link-hover-color: @spring-dark-green;
+@link-color: @spring-dark-brown;
+@link-hover-color: @spring-light-brown;
 
 @navbar-default-link-color: @spring-light-grey;
 @navbar-default-link-active-color: @spring-light-grey;
 @navbar-default-link-hover-color: @spring-light-grey;
-@navbar-default-link-hover-bg: @spring-red;
+@navbar-default-link-hover-bg: @spring-light-brown;
 @navbar-default-toggle-icon-bar-bg: @spring-light-grey;
 @navbar-default-toggle-hover-bg: transparent;
-@navbar-default-link-active-bg: @spring-red;
+@navbar-default-link-active-bg: @spring-light-brown;
 
 @border-radius-base: 0;
 @border-radius-large: 0;
 @border-radius-small: 0;
 
 @btn-default-color: @spring-light-grey;
-@btn-default-bg: @spring-brown;
-@btn-default-border: @spring-red;
+@btn-default-bg: @spring-light-brown;
+@btn-default-border: @spring-light-grey;
+
+@btn-primary-color: @spring-light-grey;
+@btn-primary-bg: @spring-light-brown;
+@btn-primary-border: @spring-light-grey;
 
 @nav-tabs-active-link-hover-color: @spring-light-grey;
 @nav-tabs-active-link-hover-bg: @spring-brown;
@@ -49,10 +55,10 @@
 @nav-tabs-border-color: @spring-brown;
 
 @pagination-active-bg: @spring-brown;
-@pagination-active-border: @spring-red;
+@pagination-active-border: @spring-dark-brown;
 
 .table > thead > tr > th {
-  background-color: lighten(@spring-grey, 3%);
+  background-color: lighten(@spring-light-brown, 3%);
   color: @spring-light-grey;
 }
 
@@ -65,6 +71,14 @@
   color: @spring-grey;
 }
 
+.btn-primary {
+	border-radius: 10%;
+	.open .dropdown-toggle& {
+    background-color: @spring-dark-brown;
+    border-color: @spring-brown;
+    }
+}
+
 .btn-default {
   border-width: 2px;
   transition: border 0.15s;
@@ -72,14 +86,15 @@
   -moz-transition: border 0.15s;
   -o-transition: border 0.15s;
   -ms-transition: border 0.15s;
+  border-radius: 10%;
 
   &:hover,
   &:focus,
   &:active,
   &.active,
   .open .dropdown-toggle& {
-    background-color: @spring-brown;
-    border-color: @spring-brown;
+    background-color: @spring-dark-brown;
+    border-color: @spring-dark-brown;
   }
 }
 
@@ -99,7 +114,7 @@ code {
 }
 
 h1 {
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 .index-page--subtitle {

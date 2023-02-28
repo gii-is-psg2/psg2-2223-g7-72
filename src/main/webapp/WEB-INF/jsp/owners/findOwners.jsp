@@ -1,51 +1,40 @@
-/*
- * Copyright 2002-2013 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package org.springframework.samples.petclinic.user;
+<%@ page session="false" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<!--  >%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%-->
 
+<petclinic:layout pageName="owners">
 
-import java.util.Optional;
+    <h2>Find Owners</h2>
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+    
+    <form:form modelAttribute="owner" action="/owners" method="get" class="form-horizontal"
+               id="search-owner-form">
+        <div class="form-group">
+            <div class="control-group" id="lastName">
+                <label class="col-sm-2 control-label">Last name </label>
+                <div class="col-sm-10">
+                    <form:input class="form-control" path="lastName" size="30" maxlength="80"/>
+                    <span class="help-inline"><form:errors path="*"/></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">Find Owner</button>
+            </div>
+        </div>
 
-/**
- * Mostly used as a facade for all Petclinic controllers Also a placeholder
- * for @Transactional and @Cacheable annotations
- *
- * @author Michael Isvy
- */
-@Service
-public class UserService {
-
-	private UserRepository userRepository;
-
-	@Autowired
-	public UserService(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
-
-	@Transactional
-	public void saveUser(User user) throws DataAccessException {
-		user.setEnabled(true);
-		userRepository.save(user);
-	}
+    </form:form>
+ 
+    <br/> 
+    <sec:authorize access="hasAuthority('admin')">
+		<a class="btn btn-default" href='<spring:url value="/owners/new" htmlEscape="true"/>'>Add Owner</a>
+	</sec:authorize>
 	
-	public Optional<User> findUser(String username) {
-		return userRepository.findById(username);
-	}
-}
+</petclinic:layout>
