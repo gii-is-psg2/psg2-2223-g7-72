@@ -18,7 +18,7 @@ public class RoomService {
 	
 	@Transactional(readOnly = true)
 	public Room getRoomById(Integer id) throws DataAccessException {
-		return repository.findById(id);
+		return repository.findById(id).get();
 	}
 	
 	@Transactional

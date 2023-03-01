@@ -1,7 +1,10 @@
 package org.springframework.samples.petclinic.pethotel;
 
 
+import java.security.Principal;
+
 import javax.validation.Valid;
+
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/owners/{ownerId}/{petId}/petHotels")
 public class PetHotelController {
 	
 	private final String PET_HOTEL_FORM = "petHotels/createOrUpdatePetHotelForm";
@@ -64,7 +66,13 @@ public class PetHotelController {
 		dataBinder.setValidator(new PetHotelValidator());
 	}
 	
-	@GetMapping("/new")
+	@GetMapping("petHotels/myPets")
+	public String myPets(Principal principal) {
+		Owner user = ownerService.findOwnerByUsername(principal.getName());
+		return "owners/"+user.getId();
+	}
+	
+	@GetMapping("/owners/{ownerId}/{petId}/petHotels/new")
 	public String createPetHotel(ModelMap model,Owner owner, Pet pet) {
 		PetHotel petHotel = new PetHotel();
 		petHotel.setOwner(owner);
@@ -73,7 +81,7 @@ public class PetHotelController {
 		return PET_HOTEL_FORM;
 	}
 	
-	@PostMapping("/new")
+	@PostMapping("/owners/{ownerId}/{petId}/petHotels/new")
 	public String savePetHotel(ModelMap model, @Valid PetHotel petHotel, BindingResult br, Owner owner, Pet pet) {
 		if(br.hasErrors()) {
 			model.put("petHotel", petHotel);
@@ -88,7 +96,7 @@ public class PetHotelController {
 		
 	}
 	
-	@GetMapping(value = "/{id}/edit")
+	@GetMapping(value = "/owners/{ownerId}/{petId}/petHotels/{id}/edit")
 	public String initUpdateForm(@PathVariable("id") int id, ModelMap model) {
 		PetHotel petHotel = service.getPetHotelById(id);
 		model.put("petHotel", petHotel);
@@ -96,7 +104,7 @@ public class PetHotelController {
 	}
 	
 	
-	@PostMapping(value = "/{id}/edit")
+	@PostMapping(value = "/owners/{ownerId}/{petId}/petHotels/{id}/edit")
 	public String processUpdateForm(@ModelAttribute("petHotel") @Valid PetHotel petHotel, BindingResult br, Owner owner, Pet pet, @PathVariable("id") int id, ModelMap model) {
 		if(br.hasErrors()) {
 			model.put("petHotel", petHotel);
@@ -107,5 +115,11 @@ public class PetHotelController {
 			service.save(petHotelToUpdate);
 			return "redirect:/owners/{ownerId}";
 		}
+	}
+	
+	@GetMapping("/owners/{ownerId}/{petId}/petHotels/{id}/delete")
+	public String deletePetHotel(@PathVariable("id") int id) {
+		service.deletePetHotel(id);
+		return "redirect:/owners/{ownerId}";
 	}
 }

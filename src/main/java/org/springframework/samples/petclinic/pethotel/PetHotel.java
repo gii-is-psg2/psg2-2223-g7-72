@@ -24,12 +24,12 @@ import lombok.Setter;
 @Setter
 public class PetHotel extends BaseEntity{
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "owner_id")
 	@NotNull
 	private Owner owner;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "pet_id")
 	@NotNull
 	private Pet pet;

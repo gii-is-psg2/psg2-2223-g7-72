@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <petclinic:layout pageName="owners">
     <h2>Owners</h2>
@@ -21,12 +23,19 @@
         <tbody>
         <c:forEach items="${selections}" var="owner">
             <tr>
+            	
                 <td>
                     <spring:url value="/owners/{ownerId}" var="ownerUrl">
                         <spring:param name="ownerId" value="${owner.id}"/>
                     </spring:url>
+                    <sec:authorize access="hasAuthority('admin')">
                     <a href="${fn:escapeXml(ownerUrl)}"><c:out value="${owner.firstName} ${owner.lastName}"/></a>
+                	 </sec:authorize>
+                	 <sec:authorize access="hasAuthority('owner')">
+                    <c:out value="${owner.firstName} ${owner.lastName}"/>
+                	 </sec:authorize>
                 </td>
+               
                 <td>
                     <c:out value="${owner.address}"/>
                 </td>

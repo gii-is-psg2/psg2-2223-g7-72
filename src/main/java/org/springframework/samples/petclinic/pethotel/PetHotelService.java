@@ -17,12 +17,17 @@ public class PetHotelService {
 	
 	@Transactional(readOnly = true)
 	public PetHotel getPetHotelById(Integer id) throws DataAccessException {
-		return repository.findById(id);
+		return repository.findById(id).get();
 	}
 	
 	@Transactional 
 	public void save(PetHotel pt) throws DataAccessException {
 		repository.save(pt);
+	}
+	
+	@Transactional
+	public void deletePetHotel(Integer id) throws DataAccessException {
+		repository.delete(repository.findById(id).get());
 	}
 	
 }

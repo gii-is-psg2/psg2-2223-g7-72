@@ -15,11 +15,13 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import java.security.Principal;
 import java.util.Collection;
 import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
 import org.springframework.samples.petclinic.user.UserService;
@@ -104,6 +106,7 @@ public class OwnerController {
 		}
 		else {
 			// multiple owners found
+			
 			model.put("selections", results);
 			return "owners/ownersList";
 		}
