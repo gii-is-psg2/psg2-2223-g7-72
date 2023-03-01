@@ -14,6 +14,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.owner.Owner;
 import org.springframework.samples.petclinic.pet.Pet;
+import org.springframework.samples.petclinic.room.Room;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -42,5 +43,9 @@ public class PetHotel extends BaseEntity{
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	@NotNull
 	private LocalDate finish;
-
+	
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "room_id")
+//	@NotNull
+//	private Room room;
 }
