@@ -119,15 +119,18 @@ public class VetController {
 			return VIEWS_VET_CREATE_OR_UPDATE_FORM;
 		}
 		else {
-			Vet vet = vetForm.getVet();
+			Vet vet = vetService.getVetById(id);
+			BeanUtils.copyProperties(vetForm.getVet(), vet, "id", "specialty");
 			vet.setSpecialtiesInternal(null);
 			for (Specialty specialty: vetForm.getSpecialties()) {
 				vet.addSpecialty(specialty);
 			}
 			vetService.saveVet(vet);
+			}
+			
 			return "redirect:/vets";
 		}
-	}
+	
 
 	@GetMapping("vets/{vetId}/delete")
 	public String deleteVet(@PathVariable("vetId") int vetId) {
