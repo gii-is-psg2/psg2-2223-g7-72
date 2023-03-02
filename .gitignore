@@ -15,3 +15,4 @@ target/*
 !.vscode/extensions.json
 _site/
 docs/cmBook/book/
+docs/historyChanges/book/
