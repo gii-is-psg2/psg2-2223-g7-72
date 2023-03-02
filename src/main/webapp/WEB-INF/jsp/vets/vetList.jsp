@@ -32,8 +32,8 @@
                 </td>
                 <td>
                     <sec:authorize access="hasAuthority('admin')">
-                    <a href="<spring:url value="/vets/${vet.id}/edit" htmlEscape="true" />">Edit</a>
-                    <a href="<spring:url value="/vets/${vet.id}/delete" htmlEscape="true" />">Delete</a>
+                    <a href="<spring:url value="/vets/${vet.id}/edit" htmlEscape="true" />"><fmt:message key="edit"/></a>
+                    <a href="<spring:url value="/vets/${vet.id}/delete" htmlEscape="true" />"><fmt:message key="delete"/></a>
                 </sec:authorize>
                 </td>
             </tr>
@@ -50,7 +50,7 @@
     </table>
 
     <sec:authorize access="hasAuthority('admin')">
-		<a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'>Add vet</a>
+		<a class="btn btn-default" href='<spring:url value="/vets/new" htmlEscape="true"/>'><fmt:message key="addVet"/></a>
 	</sec:authorize>
 
 </petclinic:layout>
