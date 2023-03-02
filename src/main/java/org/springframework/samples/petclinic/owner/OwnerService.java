@@ -55,6 +55,11 @@ public class OwnerService {
 	public Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException {
 		return ownerRepository.findByLastName(lastName);
 	}
+	
+	@Transactional(readOnly = true)
+	public Owner findOwnerByUsername(String username) throws DataAccessException {
+		return ownerRepository.findByUsername(username);
+	}
 
 	@Transactional
 	public void saveOwner(Owner owner) throws DataAccessException {
@@ -65,5 +70,10 @@ public class OwnerService {
 		//creating authorities
 		authoritiesService.saveAuthorities(owner.getUser().getUsername(), "owner");
 	}		
+
+	@Transactional
+	public void deleteOwner(Owner owner) throws DataAccessException {
+		ownerRepository.delete(owner);
+	}
 
 }

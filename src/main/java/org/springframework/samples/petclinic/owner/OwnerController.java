@@ -15,11 +15,13 @@
  */
 package org.springframework.samples.petclinic.owner;
 
+import java.security.Principal;
 import java.util.Collection;
 import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.user.AuthoritiesService;
 import org.springframework.samples.petclinic.user.UserService;
@@ -31,6 +33,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -104,6 +107,7 @@ public class OwnerController {
 		}
 		else {
 			// multiple owners found
+			
 			model.put("selections", results);
 			return "owners/ownersList";
 		}
@@ -135,10 +139,18 @@ public class OwnerController {
 	 * @return a ModelMap with the model attributes for the view
 	 */
 	@GetMapping("/owners/{ownerId}")
+	@RequestMapping("/owners/{ownerId}")
 	public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
 		ModelAndView mav = new ModelAndView("owners/ownerDetails");
 		mav.addObject(this.ownerService.findOwnerById(ownerId));
 		return mav;
+	}
+
+	@GetMapping("owners/{ownerId}/delete")
+	public String deleteOwner(@PathVariable("ownerId") int ownerId) {
+		Owner owner = this.ownerService.findOwnerById(ownerId);
+		this.ownerService.deleteOwner(owner);
+		return "redirect:/owners/find";
 	}
 
 }

@@ -77,4 +77,9 @@ public class PetService {
 		return visitRepository.findByPetId(petId);
 	}
 
+	@Transactional
+	public void deletePetById(Integer petId){
+		petRepository.deleteById(petId);
+	}
+
 }

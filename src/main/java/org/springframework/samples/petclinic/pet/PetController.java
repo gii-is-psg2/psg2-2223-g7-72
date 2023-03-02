@@ -147,4 +147,10 @@ public class PetController {
 		}
 	}
 
+	@GetMapping(value = "pets/{petId}/delete")
+	public String deletePet(@PathVariable("petId") int petId) {
+		this.petService.deletePetById(petId);
+		return "redirect:/owners/{ownerId}";
+	}
+
 }
