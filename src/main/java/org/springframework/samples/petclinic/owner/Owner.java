@@ -37,6 +37,7 @@ import org.springframework.beans.support.PropertyComparator;
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.samples.petclinic.model.Person;
 import org.springframework.samples.petclinic.pet.Pet;
+import org.springframework.samples.petclinic.pethotel.PetHotel;
 import org.springframework.samples.petclinic.user.User;
 
 /**
@@ -66,6 +67,9 @@ public class Owner extends Person {
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "owner",cascade = CascadeType.REMOVE)
 	private Set<Pet> pets;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+	private Set<PetHotel> petHotels;
 	
 	//
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -120,6 +124,22 @@ public class Owner extends Person {
 		List<Pet> sortedPets = new ArrayList<>(getPetsInternal());
 		PropertyComparator.sort(sortedPets, new MutableSortDefinition("name", true, true));
 		return Collections.unmodifiableList(sortedPets);
+	}
+	
+	protected Set<PetHotel> getPetHotel(){
+		if(this.petHotels == null) {
+			this.petHotels = new HashSet<>();
+		}
+		return this.petHotels;
+	}
+	
+	protected void setPetHotels(Set<PetHotel> petHotel) {
+		this.petHotels = petHotel;
+	}
+	
+	public List<PetHotel> getPetHotels(){
+		List<PetHotel> petHotel = new ArrayList<>(getPetHotel());
+		return petHotel;
 	}
 
 	public void addPet(Pet pet) {

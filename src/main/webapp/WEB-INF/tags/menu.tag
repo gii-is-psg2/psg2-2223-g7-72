@@ -46,6 +46,14 @@
 					<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span>
 					<span>Error</span>
 				</petclinic:menuItem>
+				
+				<sec:authorize access="hasAuthority('owner')">
+				<petclinic:menuItem active="${name eq 'my profile'}" url="/petHotels/myProfile"
+					title="my profile">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					<span>My Profile</span>
+				</petclinic:menuItem>
+				</sec:authorize>
 
 			</ul>
 
