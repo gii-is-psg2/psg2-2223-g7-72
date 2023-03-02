@@ -9,5 +9,5 @@ hace etiqueta con una [versión](../../versioning_policy.md).
 Nomenclatura: `release/v{versiónDeRelease}`
 > La versión de release se corresponde con la versión de la rama develop en el momento que se bifurcó la rama
 
-Ejemplo: `release/v0.0.0` (Esta rama parte de la rama `develop` v0.0.0. Una vez se realiza el merge con la rama `develop`,
-la rama `develop` pasa a ser v1.0.0, la rama `main` también aumenta su versión al hacer merge con ella  y además se crea una TAG).
+Ejemplo: ``release/v1.0.0.`` Una vez se realiza el merge con la rama ``develop`` y ``main``,
+esta última  pasa a ser ``v1.0.0`` (Además se crea una TAG).

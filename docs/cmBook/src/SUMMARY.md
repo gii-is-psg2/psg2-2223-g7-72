@@ -14,6 +14,8 @@
     - [Bugfix](branching_strat_peer_review/branches/bugfix.md)
     - [Revisiones por pares](branching_strat_peer_review/peer_review.md)
 - [Política de control de versiones](./versioning_policy.md)
+- [Definición de hecho](DoD.md)
+
 ----
 [Anexo 1: Nuestro equipo](CONTRIBUTORS.md)
 [Anexo 2: Bibliografía](REFERENCES.md)
