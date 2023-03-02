@@ -61,6 +61,6 @@ public interface OwnerRepository extends Repository<Owner, Integer> {
 	public Owner findById(@Param("id") int id);
 	
 	@Query("SELECT owner FROM Owner owner WHERE owner.user.username = :username")
-	public Owner findByUsername(@Param("username") String username);
+	public Owner findByUsername(String username);
 
 }

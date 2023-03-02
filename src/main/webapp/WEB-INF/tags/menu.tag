@@ -47,10 +47,10 @@
 				</petclinic:menuItem>
 				
 				<sec:authorize access="hasAuthority('owner')">
-				<petclinic:menuItem active="${name eq 'my pets'}" url="/petHotels/myPets"
-					title="my pets">
+				<petclinic:menuItem active="${name eq 'my profile'}" url="/petHotels/myProfile"
+					title="my profile">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-					<span>My Pets</span>
+					<span>My Profile</span>
 				</petclinic:menuItem>
 				</sec:authorize>
 

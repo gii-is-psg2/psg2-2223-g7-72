@@ -8,26 +8,26 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class PetHotelService {
 
-	protected PetHotelRepository repository;
+	protected PetHotelRepository petHotelRepository;
 	
 	@Autowired
-	PetHotelService(PetHotelRepository repository) {
-		this.repository = repository;
+	PetHotelService(PetHotelRepository petHotelRepository) {
+		this.petHotelRepository = petHotelRepository;
 	}
 	
 	@Transactional(readOnly = true)
 	public PetHotel getPetHotelById(Integer id) throws DataAccessException {
-		return repository.findById(id).get();
+		return petHotelRepository.findById(id).get();
 	}
 	
 	@Transactional 
 	public void save(PetHotel pt) throws DataAccessException {
-		repository.save(pt);
+		petHotelRepository.save(pt);
 	}
 	
 	@Transactional
 	public void deletePetHotel(Integer id) throws DataAccessException {
-		repository.delete(repository.findById(id).get());
+		petHotelRepository.delete(petHotelRepository.findById(id).get());
 	}
 	
 }

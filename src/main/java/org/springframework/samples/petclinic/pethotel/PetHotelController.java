@@ -33,13 +33,13 @@ public class PetHotelController {
 	private final String PET_HOTEL_FORM = "petHotels/createOrUpdatePetHotelForm";
 	
 	
-	private PetHotelService service;
+	private PetHotelService petHotelService;
 	private OwnerService ownerService;
 	private PetService petService;
 	
 	@Autowired
-	public PetHotelController(PetHotelService service, OwnerService ownerService, PetService petService) {
-		this.service = service;
+	public PetHotelController(PetHotelService petHotelService, OwnerService ownerService, PetService petService) {
+		this.petHotelService = petHotelService;
 		this.ownerService = ownerService;
 		this.petService = petService;
 	}
@@ -87,7 +87,7 @@ public class PetHotelController {
 		else {
 			petHotel.setOwner(owner);
 			petHotel.setPet(pet);
-			service.save(petHotel);
+			petHotelService.save(petHotel);
 			return "redirect:/owners/{ownerId}";
 		}
 		
@@ -95,7 +95,7 @@ public class PetHotelController {
 	
 	@GetMapping(value = "/owners/{ownerId}/{petId}/petHotels/{id}/edit")
 	public String initUpdateForm(@PathVariable("id") int id, ModelMap model) {
-		PetHotel petHotel = service.getPetHotelById(id);
+		PetHotel petHotel = petHotelService.getPetHotelById(id);
 		model.put("petHotel", petHotel);
 		return PET_HOTEL_FORM;
 	}
@@ -107,16 +107,16 @@ public class PetHotelController {
 			model.put("petHotel", petHotel);
 			return PET_HOTEL_FORM;
 		} else {
-			PetHotel petHotelToUpdate = service.getPetHotelById(id);
+			PetHotel petHotelToUpdate = petHotelService.getPetHotelById(id);
 			BeanUtils.copyProperties(petHotel, petHotelToUpdate, "id", "owner", "pet");
-			service.save(petHotelToUpdate);
+			petHotelService.save(petHotelToUpdate);
 			return "redirect:/owners/{ownerId}";
 		}
 	}
 	
 	@GetMapping("/owners/{ownerId}/{petId}/petHotels/{id}/delete")
 	public String deletePetHotel(@PathVariable("id") int id) {
-		service.deletePetHotel(id);
+		petHotelService.deletePetHotel(id);
 		return "redirect:/owners/{ownerId}";
 	}
 }

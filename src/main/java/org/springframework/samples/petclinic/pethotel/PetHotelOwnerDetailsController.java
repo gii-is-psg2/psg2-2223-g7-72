@@ -13,15 +13,15 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class petHotelController2 {
+public class PetHotelOwnerDetailsController {
 	
-	private PetHotelService service;
+	private PetHotelService petHotelService;
 	private OwnerService ownerService;
 	private PetService petService;
 	
 	@Autowired
-	public petHotelController2(PetHotelService service, OwnerService ownerService, PetService petService) {
-		this.service = service;
+	public PetHotelOwnerDetailsController(PetHotelService petHotelService, OwnerService ownerService, PetService petService) {
+		this.petHotelService = petHotelService;
 		this.ownerService = ownerService;
 		this.petService = petService;
 	}

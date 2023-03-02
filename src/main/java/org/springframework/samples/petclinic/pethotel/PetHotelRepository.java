@@ -13,7 +13,7 @@ import org.springframework.data.repository.query.Param;
 public interface PetHotelRepository extends CrudRepository<PetHotel, Integer> {
 
 	@Query("SELECT petHotel FROM PetHotel petHotel WHERE petHotel.id =:id")
-	public PetHotel findById(@Param("id") int id);
+	public PetHotel findById(int id);
 	
 	
 }
