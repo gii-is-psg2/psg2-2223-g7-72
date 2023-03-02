@@ -1,6 +1,8 @@
 package org.springframework.samples.petclinic.pethotel;
 
 
+
+
 import java.security.Principal;
 
 import javax.validation.Valid;
@@ -29,6 +31,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class PetHotelController {
 	
 	private final String PET_HOTEL_FORM = "petHotels/createOrUpdatePetHotelForm";
+	
 	
 	private PetHotelService service;
 	private OwnerService ownerService;
@@ -65,13 +68,7 @@ public class PetHotelController {
 	public void initPetHotelBinder(WebDataBinder dataBinder) {
 		dataBinder.setValidator(new PetHotelValidator());
 	}
-	
-	@GetMapping("petHotels/myPets")
-	public String myPets(Principal principal) {
-		Owner user = ownerService.findOwnerByUsername(principal.getName());
-		return "owners/"+user.getId();
-	}
-	
+		
 	@GetMapping("/owners/{ownerId}/{petId}/petHotels/new")
 	public String createPetHotel(ModelMap model,Owner owner, Pet pet) {
 		PetHotel petHotel = new PetHotel();
