@@ -12,6 +12,9 @@ import org.springframework.samples.petclinic.model.BaseEntity;
 @Repository
 public interface PetRepository extends CrudRepository<Pet, Integer> {
 
+	@Query("SELECT p FROM Pet p WHERE p.adoption = true")
+	List<Pet> findPetsForAdoption() throws DataAccessException;
+
 	@Query("SELECT ptype FROM PetType ptype ORDER BY ptype.name")
 	List<PetType> findPetTypes() throws DataAccessException;
 	

@@ -32,6 +32,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 
+
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.core.style.ToStringCreator;
@@ -77,6 +78,9 @@ public class Owner extends Person {
 	private User user;
 	//
 	
+	/* @ManyToMany(fetch = FetchType.EAGER, mappedBy = "owners")
+	private Set<Notifications> notifications; */
+
 	public String getAddress() {
 		return this.address;
 	}

@@ -153,4 +153,11 @@ public class PetController {
 		return "redirect:/owners/{ownerId}";
 	}
 
+	@GetMapping (value = "pets/adoption")
+	public String showForAdoptionPets(ModelMap model) {
+		Collection<Pet> pets = this.petService.findPetsForAdoption();
+		model.put("pets", pets);
+		return "pets/forAdoptionList";
+	}
+
 }
