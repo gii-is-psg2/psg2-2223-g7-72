@@ -94,6 +94,15 @@ public class Pet extends NamedEntity {
 	public void setOwner(Owner owner) {
 		this.owner = owner;
 	}
+	
+	public Boolean getAdoption() {
+		return this.adoption;
+	}
+	
+	public void setAdoption(Boolean b) {
+		this.adoption = b;
+	}
+	
 
 	protected Set<Visit> getVisitsInternal() {
 		if (this.visits == null) {

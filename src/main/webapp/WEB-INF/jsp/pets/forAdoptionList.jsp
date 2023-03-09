@@ -30,7 +30,7 @@
                 </td>
 
                 <td>
-                    <a href="<spring:url value="/pets/${pet.id}/edit" htmlEscape="true" />"><fmt:message key="adopt"/></a>
+                    <a href="<spring:url value="/notifications/${pet.id}/new" htmlEscape="true" />"><fmt:message key="adopt"/></a>
                 </td>
                 
                 

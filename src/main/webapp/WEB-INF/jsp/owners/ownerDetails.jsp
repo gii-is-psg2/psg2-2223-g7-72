@@ -107,14 +107,32 @@
                                 </sec:authorize>
                             </td>
                              <td>
-                          
                                 <spring:url value="/owners/{ownerId}/{petId}/petHotels/new" var="petHotelUrl">
                                     <spring:param name="ownerId" value="${owner.id}"/>
                                     <spring:param name="petId" value="${pet.id}"/>
                                 </spring:url>
-                                <a href="${fn:escapeXml(petHotelUrl)}"><fmt:message key="bookPetHotel"/>l</a>
-                          
+                                <a href="${fn:escapeXml(petHotelUrl)}"><fmt:message key="bookPetHotel"/></a>
                             </td>
+                            <td>
+                            <c:if test="${pet.adoption != true }">
+                                <spring:url value="/owners/{ownerId}/pets/{petId}/newAdoption" var="adoptionUrl">
+                                    <spring:param name="ownerId" value="${owner.id}"/>
+                                    <spring:param name="petId" value="${pet.id}"/>
+                                </spring:url>
+                                
+                                <a href="${fn:escapeXml(adoptionUrl)}"><fmt:message key="giveUpAdoption"/></a>
+                            </c:if>
+                            <c:if test="${pet.adoption == true }">
+                           		<spring:url value="/owners/{ownerId}/pets/{petId}/cancelAdoption" var="adoptionUrl">
+                                    <spring:param name="ownerId" value="${owner.id}"/>
+                                    <spring:param name="petId" value="${pet.id}"/>
+                                </spring:url>
+                                
+                                <a href="${fn:escapeXml(adoptionUrl)}"><fmt:message key="cancelAdoption"/></a>
+                            
+                            </c:if>
+                            </td>
+                            
                         </tr>
                     </table>
                 </td>

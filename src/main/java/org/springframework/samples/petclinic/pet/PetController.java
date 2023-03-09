@@ -21,6 +21,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.owner.Owner;
 import org.springframework.samples.petclinic.owner.OwnerService;
 import org.springframework.samples.petclinic.pet.exceptions.DuplicatedPetNameException;
@@ -158,6 +159,38 @@ public class PetController {
 		Collection<Pet> pets = this.petService.findPetsForAdoption();
 		model.put("pets", pets);
 		return "pets/forAdoptionList";
+	}
+
+	@GetMapping(value = "pets/{petId}/newAdoption")
+	public String giveUpAdoption(@PathVariable("petId") int petId) {
+		Pet pet = this.petService.findPetById(petId);
+		pet.setAdoption(true);
+		try {
+			this.petService.savePet(pet);
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DuplicatedPetNameException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "redirect:/owners/{ownerId}";
+	}
+	
+	@GetMapping(value = "pets/{petId}/cancelAdoption")
+	public String cancelAdoption(@PathVariable("petId") int petId) {
+		Pet pet = this.petService.findPetById(petId);
+		pet.setAdoption(false);
+		try {
+			this.petService.savePet(pet);
+		} catch (DataAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DuplicatedPetNameException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "redirect:/owners/{ownerId}";
 	}
 
 }
