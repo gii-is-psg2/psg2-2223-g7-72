@@ -36,6 +36,7 @@ import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.petclinic.model.NamedEntity;
+import org.springframework.samples.petclinic.notification.Notification;
 import org.springframework.samples.petclinic.owner.Owner;
 
 /**
@@ -64,8 +65,8 @@ public class Pet extends NamedEntity {
 	@JoinColumn(name = "owner_id")
 	private Owner owner;
 
-	/* @ManyToMany (mappedBy = "pets", fetch = FetchType.EAGER)
-	private Set<Notification> notifications; */
+	@ManyToMany (mappedBy = "pet", fetch = FetchType.EAGER)
+	private Set<Notification> notifications;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
 	private Set<Visit> visits;

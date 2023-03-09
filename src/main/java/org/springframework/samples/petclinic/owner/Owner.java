@@ -26,6 +26,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -37,6 +38,7 @@ import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.samples.petclinic.model.Person;
+import org.springframework.samples.petclinic.notification.Notification;
 import org.springframework.samples.petclinic.pet.Pet;
 import org.springframework.samples.petclinic.pethotel.PetHotel;
 import org.springframework.samples.petclinic.user.User;
@@ -72,14 +74,14 @@ public class Owner extends Person {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
 	private Set<PetHotel> petHotels;
 	
-	//
+	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
-	//
 	
-	/* @ManyToMany(fetch = FetchType.EAGER, mappedBy = "owners")
-	private Set<Notifications> notifications; */
+	
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "owner")
+	private Set<Notification> notifications;
 
 	public String getAddress() {
 		return this.address;
