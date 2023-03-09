@@ -65,7 +65,7 @@ public class Pet extends NamedEntity {
 	@JoinColumn(name = "owner_id")
 	private Owner owner;
 
-	@ManyToMany (mappedBy = "pet", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "pet", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private Set<Notification> notifications;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
@@ -102,7 +102,13 @@ public class Pet extends NamedEntity {
 	public void setAdoption(Boolean b) {
 		this.adoption = b;
 	}
-	
+
+	protected Set<Notification> getNotificationsInternal() {
+		if (this.notifications == null) {
+			this.notifications = new HashSet<>();
+		}
+		return this.notifications;
+	}
 
 	protected Set<Visit> getVisitsInternal() {
 		if (this.visits == null) {
@@ -124,6 +130,11 @@ public class Pet extends NamedEntity {
 	public void addVisit(Visit visit) {
 		getVisitsInternal().add(visit);
 		visit.setPet(this);
+	}
+
+	public void addNotification(Notification notification) {
+		getNotificationsInternal().add(notification);
+		notification.setPet(this);
 	}
 
 }

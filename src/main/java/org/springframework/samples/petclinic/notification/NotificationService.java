@@ -17,7 +17,7 @@ public class NotificationService {
 	}
 	
 	@Transactional
-	public void save(Notification notification) throws DataAccessException {
+	public void saveNotification(Notification notification) throws DataAccessException {
 		notificationRepository.save(notification);
 	}
 }

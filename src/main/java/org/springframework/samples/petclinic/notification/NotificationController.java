@@ -11,6 +11,8 @@ import org.springframework.samples.petclinic.owner.Owner;
 import org.springframework.samples.petclinic.owner.OwnerService;
 import org.springframework.samples.petclinic.pet.Pet;
 import org.springframework.samples.petclinic.pet.PetService;
+import org.springframework.samples.petclinic.user.User;
+import org.springframework.samples.petclinic.user.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -37,30 +39,38 @@ public class NotificationController {
 	}
 	
 	@GetMapping(value = "/{petId}/new")
-	public String initCreationForm(Principal principal, @PathVariable("petId") int petId, ModelMap model) {
-		Notification notification = new Notification();
-		Owner owner = ownerService.findOwnerByUsername(principal.getName());
-		List<Owner> owners = notification.getOwner();
-		owners.add(owner);
-		model.put("owner", owner);
-		Pet pet = petService.findPetById(petId);
-		List<Pet> pets = notification.getPet();
-		pets.add(pet);
-		model.put("pet", pet);
-		model.put("notification", notification);
-		return NOTIFICATION_CREATE_OR_UPDATE_FORM;
-	}
-	
-	@PostMapping(value = "/{petId}/new")
-	public String processCreationForm(@Valid Notification notification, @PathVariable("petId") int petId, ModelMap model, BindingResult result) {
-		if(result.hasErrors()) {
+	public String initCreationForm(@PathVariable("petId") int petId, ModelMap model, Principal principal) {
+		String username = principal.getName();
+		Owner owner = this.ownerService.findOwnerByUsername(username);
+		Pet pet = this.petService.findPetById(petId);
+		if(owner.getId() != pet.getOwner().getId()) {
+			Notification notification = new Notification();
 			model.put("notification", notification);
 			return NOTIFICATION_CREATE_OR_UPDATE_FORM;
 		}
 		else {
-			Notification notificationToUpdate = notification;
-			BeanUtils.copyProperties(notification, notificationToUpdate, "id", "owner", "pet");
-			this.notificationService.save(notificationToUpdate);
+			return "redirect:/";
+		}
+	}
+	
+	@PostMapping(value = "/{petId}/new")
+	public String processCreationForm(@PathVariable("petId") int petId, @Valid Notification notification, BindingResult result, ModelMap model, Principal principal) {
+		String username = principal.getName();
+		Owner owner = this.ownerService.findOwnerByUsername(username);
+		Pet pet = this.petService.findPetById(petId);
+		if(owner.getId() != pet.getOwner().getId()) {
+			if (result.hasErrors()) {
+				model.put("notification", notification);
+				return NOTIFICATION_CREATE_OR_UPDATE_FORM;
+			}
+			else {
+				owner.addNotification(notification);
+				pet.addNotification(notification);
+				this.notificationService.saveNotification(notification);
+				return "redirect:/";
+			}
+		}
+		else {
 			return "redirect:/";
 		}
 	}

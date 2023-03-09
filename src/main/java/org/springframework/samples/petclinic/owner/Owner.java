@@ -79,8 +79,7 @@ public class Owner extends Person {
     @JoinColumn(name = "username", referencedColumnName = "username")
 	private User user;
 	
-	
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "owner")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "owner",cascade = CascadeType.REMOVE)
 	private Set<Notification> notifications;
 
 	public String getAddress() {
@@ -138,6 +137,13 @@ public class Owner extends Person {
 		}
 		return this.petHotels;
 	}
+
+	public Set<Notification> getNotifications() {
+		if (this.notifications == null) {
+			this.notifications = new HashSet<>();
+		}
+		return this.notifications;
+	}
 	
 	protected void setPetHotels(Set<PetHotel> petHotel) {
 		this.petHotels = petHotel;
@@ -151,6 +157,11 @@ public class Owner extends Person {
 	public void addPet(Pet pet) {
 		getPetsInternal().add(pet);
 		pet.setOwner(this);
+	}
+
+	public void addNotification(Notification notification) {
+		getNotifications().add(notification);
+		notification.setOwner(this);
 	}
 	
 	public boolean removePet(Pet pet) {

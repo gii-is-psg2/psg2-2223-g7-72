@@ -26,7 +26,7 @@
                     
                 </div>
         	<div class="form-group has-feedback">
-        		<petclinic:inputField label="Solicitud" name="solicitud"/>
+        		<petclinic:inputField label="Solicitud" name="comment"/>
         	</div>
         	<div class="form-group">
         		<div class="col-sm-offset-2 col-sm-10">
