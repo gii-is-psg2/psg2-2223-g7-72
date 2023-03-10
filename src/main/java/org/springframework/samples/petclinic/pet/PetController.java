@@ -15,6 +15,7 @@
  */
 package org.springframework.samples.petclinic.pet;
 
+import java.security.Principal;
 import java.util.Collection;
 
 import javax.validation.Valid;
@@ -159,8 +160,9 @@ public class PetController {
 	}
 
 	@GetMapping (value = "pets/adoption")
-	public String showForAdoptionPets(ModelMap model) {
-		Collection<Pet> pets = this.petService.findPetsForAdoption();
+	public String showForAdoptionPets(ModelMap model, Principal principal) {
+		Owner owner = this.ownerService.findOwnerByUsername(principal.getName());
+		Collection<Pet> pets = this.petService.findPetsForAdoption(owner.getId());
 		model.put("pets", pets);
 		return "pets/forAdoptionList";
 	}

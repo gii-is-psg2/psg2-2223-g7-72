@@ -82,8 +82,8 @@ public class PetService {
 		petRepository.deleteById(petId);
 	}
 
-	public Collection<Pet> findPetsForAdoption(){
-		return petRepository.findPetsForAdoption();
+	public Collection<Pet> findPetsForAdoption(int ownerId){
+		return petRepository.findOthersPetsForAdoption(ownerId);
 	}
 
 }
