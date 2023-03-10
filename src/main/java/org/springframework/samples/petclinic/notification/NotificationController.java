@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.samples.petclinic.pet.exceptions.DuplicatedPetNameException;
 
 @Controller
 @RequestMapping("/notifications")
@@ -92,6 +93,30 @@ public class NotificationController {
 		
 		return "notifications/showNotifications";
 	}
+
+	@GetMapping(value = "/{notificationId}/delete")
+	public String deleteNotification(@PathVariable("notificationId") int notificationId, ModelMap model) {
+		Notification notification = this.notificationService.findNotificationById(notificationId);
+		Pet pet = notification.getPet();
+		this.notificationService.deleteNotification(notification);
+		return "redirect:/notifications/" + pet.getOwner().getId();
+	}
+
+	@GetMapping(value = "/{notificationId}/acceptAdoption")
+	public String acceptAdoption(@PathVariable("notificationId") int notification, ModelMap model){
+		Notification notification1 = this.notificationService.findNotificationById(notification);
+		Pet pet = notification1.getPet();
+		pet.setOwner(notification1.getOwner());
+		pet.setAdoption(false);
+		try{
+			this.petService.savePet(pet);
+		} catch (DuplicatedPetNameException ex) {
+			return "redirect:/oups";
+		}
+		this.notificationService.deleteNotificationByPetId(pet.getId());
+		return "redirect:/";
+	}
+
 	
 	
 }

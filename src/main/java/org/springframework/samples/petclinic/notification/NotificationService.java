@@ -27,4 +27,18 @@ public class NotificationService {
 	public List<Notification> findNotificationByPetId(int petId) {
 		return notificationRepository.findByPetId(petId);
 	}
+
+	@Transactional
+	public void deleteNotificationByPetId(int petId) {
+		notificationRepository.deleteByPetId(petId);
+	}
+
+	public Notification findNotificationById(int notificationId) {
+		return notificationRepository.findById(notificationId).get();
+	}
+
+	public void deleteNotification(Notification notification) {
+		notificationRepository.delete(notification);
+	}
+
 }

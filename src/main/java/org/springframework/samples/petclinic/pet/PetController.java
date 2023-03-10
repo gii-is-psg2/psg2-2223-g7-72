@@ -22,8 +22,10 @@ import javax.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.notification.NotificationService;
 import org.springframework.samples.petclinic.owner.Owner;
 import org.springframework.samples.petclinic.owner.OwnerService;
+import org.springframework.samples.petclinic.notification.NotificationService;
 import org.springframework.samples.petclinic.pet.exceptions.DuplicatedPetNameException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -48,12 +50,14 @@ public class PetController {
 	private static final String VIEWS_PETS_CREATE_OR_UPDATE_FORM = "pets/createOrUpdatePetForm";
 
 	private final PetService petService;
-        private final OwnerService ownerService;
+    private final OwnerService ownerService;
+	private final NotificationService notificationService;
 
 	@Autowired
-	public PetController(PetService petService, OwnerService ownerService) {
+	public PetController(PetService petService, OwnerService ownerService, NotificationService notificationService) {
 		this.petService = petService;
-                this.ownerService = ownerService;
+        this.ownerService = ownerService;
+		this.notificationService = notificationService;
 	}
 
 	@ModelAttribute("types")
@@ -181,6 +185,7 @@ public class PetController {
 	public String cancelAdoption(@PathVariable("petId") int petId) {
 		Pet pet = this.petService.findPetById(petId);
 		pet.setAdoption(false);
+		notificationService.deleteNotificationByPetId(petId);
 		try {
 			this.petService.savePet(pet);
 		} catch (DataAccessException e) {

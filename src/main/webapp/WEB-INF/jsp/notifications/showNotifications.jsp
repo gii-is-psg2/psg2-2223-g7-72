@@ -31,7 +31,8 @@
 	                    <c:out value="${notifications.comment}"/>
 	                </td>
 	                <td>
-	                    <a href="<spring:url value="/" htmlEscape="true" />"><fmt:message key="approve"/></a>
+						<a href="<spring:url value="/notifications/${notifications.id}/acceptAdoption" htmlEscape="true" />"><fmt:message key="accept"/></a>
+						<a href="<spring:url value="/notifications/${notifications.id}/delete" htmlEscape="true" />"><fmt:message key="decline"/></a>
 	                </td>
 	            </tr>
 	        </c:forEach>
