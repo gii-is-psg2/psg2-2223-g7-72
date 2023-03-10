@@ -1,5 +1,7 @@
 package org.springframework.samples.petclinic.notification;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +21,10 @@ public class NotificationService {
 	@Transactional
 	public void saveNotification(Notification notification) throws DataAccessException {
 		notificationRepository.save(notification);
+	}
+	
+	@Transactional
+	public List<Notification> findNotificationByPetId(int petId) {
+		return notificationRepository.findByPetId(petId);
 	}
 }

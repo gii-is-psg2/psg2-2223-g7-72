@@ -20,20 +20,15 @@
         <tbody>
         <c:forEach items="${pets}" var="pet">
             <tr>
-            	
                 <td>
                    <c:out value="${pet.name}"/>
                 </td>
-               
                 <td>
                     <c:out value="${pet.type}"/>
                 </td>
-
                 <td>
                     <a href="<spring:url value="/notifications/${pet.id}/new" htmlEscape="true" />"><fmt:message key="adopt"/></a>
                 </td>
-                
-                
             </tr>
         </c:forEach>
         </tbody>

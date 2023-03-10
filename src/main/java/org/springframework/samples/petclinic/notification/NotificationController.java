@@ -1,6 +1,7 @@
 package org.springframework.samples.petclinic.notification;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -45,6 +46,8 @@ public class NotificationController {
 		Pet pet = this.petService.findPetById(petId);
 		if(owner.getId() != pet.getOwner().getId()) {
 			Notification notification = new Notification();
+			model.put("owner", owner);
+			model.put("pet", pet);
 			model.put("notification", notification);
 			return NOTIFICATION_CREATE_OR_UPDATE_FORM;
 		}
@@ -60,6 +63,8 @@ public class NotificationController {
 		Pet pet = this.petService.findPetById(petId);
 		if(owner.getId() != pet.getOwner().getId()) {
 			if (result.hasErrors()) {
+				model.put("owner", owner);
+				model.put("pet", pet);
 				model.put("notification", notification);
 				return NOTIFICATION_CREATE_OR_UPDATE_FORM;
 			}
@@ -73,6 +78,19 @@ public class NotificationController {
 		else {
 			return "redirect:/";
 		}
+	}
+	
+	@GetMapping(value = "/{ownerId}")
+	public String showNotifications(@PathVariable("ownerId") int ownerId, ModelMap model) {
+		Owner owner = this.ownerService.findOwnerById(ownerId);
+		List<Pet> pets = owner.getPets();
+		List<Notification> notifications = new ArrayList<>();
+		for(Pet p : pets) {
+			notifications.addAll(notificationService.findNotificationByPetId(p.getId()));
+		}
+		model.put("notifications", notifications);
+		
+		return "notifications/showNotifications";
 	}
 	
 	

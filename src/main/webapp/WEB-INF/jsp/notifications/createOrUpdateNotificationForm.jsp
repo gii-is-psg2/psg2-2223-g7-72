@@ -13,7 +13,7 @@
         <form:form modelAttribute="notification" class="form-horizontal">
         	<input type="hidden" name="id" value="${notification.id}"/>
         		<div class="form-group">
-                    <label class="col-sm-2 control-label"><fmt:message key="owner"/></label>
+                    <label class="col-sm-2 control-label"><fmt:message key="new owner"/></label>
                     <div class="col-sm-10">
                         <c:out value="${owner.firstName} ${owner.lastName}"/>
                     </div>
